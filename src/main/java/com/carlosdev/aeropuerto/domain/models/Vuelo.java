@@ -12,4 +12,12 @@ public class Vuelo {
     private Integer asientosDisponibles;
     private LocalDateTime horaSalida;
     private LocalDateTime horaLlegada;
+
+    public void reservarAsiento() {
+        asientosDisponibles = asientosDisponibles - 1;
+    }
+
+    public void liberarAsiento() {
+        asientosDisponibles = asientosDisponibles + 1;
+    }
 }
