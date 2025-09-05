@@ -21,6 +21,9 @@ public class JwtUtil {
     
     @Value("${jwt.expiration}")
     private Long expiration;
+    
+    @Value("${jwt.refresh.expiration}")
+    private Long refreshExpiration;
 
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
@@ -32,6 +35,16 @@ public class JwtUtil {
             .subject(username)
             .issuedAt(new Date())
             .expiration(Date.from(LocalDateTime.now().plusSeconds(expiration)
+                .atZone(ZoneId.systemDefault()).toInstant()))
+            .signWith(getSigningKey())
+            .compact();
+    }
+    
+    public String generateRefreshToken(String username) {
+        return Jwts.builder()
+            .subject(username)
+            .issuedAt(new Date())
+            .expiration(Date.from(LocalDateTime.now().plusSeconds(refreshExpiration)
                 .atZone(ZoneId.systemDefault()).toInstant()))
             .signWith(getSigningKey())
             .compact();

@@ -18,4 +18,6 @@ public class Profile {
     private String name;
     private LocalDateTime date_creation;
     private LocalDateTime last_login;
+    private String refresh_token;
+    private LocalDateTime refresh_token_expiry;
 }
