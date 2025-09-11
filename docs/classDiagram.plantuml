@@ -1,0 +1,36 @@
+enum Status {
+	PENDING
+	CONFIRMED
+	CANCELED
+}
+
+class ReservationEntity{
+	- Long: id
+	- String: code
+	- LocalDateTime: reservationDateTime
+	- Status: status
+	- PassengerEntity: passenger
+	- FlightEntity: flight
+	- int: seat
+	- BigDecimal: price
+	---
+	+ void confirm()
+	+ void cancel()
+	+ void assignSeat(int seatNumber)
+	+ boolean isActive()
+	+ BigDecimal calculateCancellationFree()
+}
+
+class PassengerEntity {
+	- Long: id
+}
+
+class FlightEntity {
+	- Long: id
+}
+
+Status "1" <- ReservationEntity
+ReservationEntity "0..*" -- "1" PassengerEntity
+ReservationEntity "0..*" --> "1" FlightEntity
+
+@enduml
