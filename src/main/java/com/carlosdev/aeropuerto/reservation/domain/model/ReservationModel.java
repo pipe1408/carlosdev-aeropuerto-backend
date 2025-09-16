@@ -1,6 +1,6 @@
 package com.carlosdev.aeropuerto.reservation.domain.model;
 
-import static com.carlosdev.aeropuerto.reservation.domain.model.StatusModel.*;
+import static com.carlosdev.aeropuerto.reservation.domain.model.StatusEnum.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,12 +20,12 @@ public class ReservationModel {
 	private Long id;
 	private String code;
 	private LocalDateTime reservationDateTime;
-	private StatusModel status;
+	private StatusEnum status;
 	private PassengerModel passenger;
 	private FlightModel flight;
 	private int seat;
 	private BigDecimal price;
-	
+		
     public void confirm() {
         if (status == CANCELED) {
             throw new IllegalStateException("No se puede confirmar una reserva cancelada.");
