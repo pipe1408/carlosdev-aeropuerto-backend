@@ -1,10 +1,14 @@
 package com.carlosdev.aeropuerto.reservation.domain.model;
 
-import static com.carlosdev.aeropuerto.reservation.domain.model.StatusEnum.*;
+import static com.carlosdev.aeropuerto.reservation.domain.model.StatusEnum.CANCELED;
+import static com.carlosdev.aeropuerto.reservation.domain.model.StatusEnum.CONFIRMED;
+import static com.carlosdev.aeropuerto.reservation.domain.model.StatusEnum.PENDING;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +24,7 @@ public class ReservationModel {
 	private Long id;
 	private String code;
 	private LocalDateTime reservationDateTime;
+	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 	private PassengerModel passenger;
 	private FlightModel flight;
