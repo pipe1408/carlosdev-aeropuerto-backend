@@ -43,12 +43,12 @@ public class ReservationEntity {
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "passenger_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "passenger_id", nullable = true)
 	private PassengerEntity passenger;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "flight_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "flight_id", nullable = true)
 	private FlightEntity flight;
 	
 	private int seat;
